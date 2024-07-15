@@ -12,7 +12,8 @@ struct IllustraSwiftUIApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            TabBarView()
+                .environmentObject(TabBarViewModel())
         }
     }
 }
