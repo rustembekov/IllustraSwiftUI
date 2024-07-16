@@ -10,8 +10,8 @@ import SwiftUI
 struct ImageView: View {
     @StateObject var imageLoader: ImageLoaderViewModel
     
-    init(urlString: String) {
-        _imageLoader = StateObject(wrappedValue: ImageLoaderViewModel(urlString: urlString))
+    init(urlString: String, imageName: String) {
+        _imageLoader = StateObject(wrappedValue: ImageLoaderViewModel(urlString: urlString, imageName: imageName))
     }
     
     var body: some View {
@@ -30,6 +30,6 @@ struct ImageView: View {
 
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageView(urlString: "")
+        ImageView(urlString: "", imageName: "")
     }
 }

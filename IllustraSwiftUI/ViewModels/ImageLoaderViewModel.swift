@@ -4,7 +4,6 @@
 //
 //  Created by Sabr on 15.07.2024.
 //
-
 import Foundation
 import Combine
 import SwiftUI
@@ -14,17 +13,28 @@ class ImageLoaderViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
     let manager = ImageLocalManager.instanse
     
-    init(urlString: String) {
-        self.image = manager.getImage(imagePath: urlString)
+    init(urlString: String, imageName: String) {
+        getImage(urlString: urlString, imageName: imageName)
     }
     
-    func loadImage(from urlString: String) {
+    private func getImage(urlString: String, imageName: String){
+        if let savedImage = manager.getImage(imageName: imageName){
+            image = savedImage
+            print("RETRIEVED")
+        } else{
+            loadImage(urlString: urlString, imageName: imageName)
+            print("DOWNLOADING")
+        }
+    }
+    
+    func loadImage(urlString: String, imageName: String) {
         print("Downloading image now!")
         
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
             .map { UIImage(data: $0.data) }
+            .replaceError(with: nil)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 print("Completion: \(completion)")
@@ -32,7 +42,7 @@ class ImageLoaderViewModel: ObservableObject {
                 guard
                     let self = self,
                     let image = returnedImage else { return }
-                self.manager.addImage(imagePath: urlString, image: image)
+                self.manager.addImage(imageName: imageName, image: image)
             })
             .store(in: &cancellables)
     }

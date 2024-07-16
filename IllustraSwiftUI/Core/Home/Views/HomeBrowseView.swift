@@ -25,15 +25,17 @@ struct HomeBrowseView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 16) {
                     ForEach(Array(vm.dataArray.enumerated()), id: \.element.id) { index, image in
-                        if let imageURL = image.urls?.regular {
-                            ImageView(urlString: imageURL)
+                        if let imageURL = image.urls?.regular, let imageName = image.slug {
+                            ImageView(urlString: imageURL, imageName: imageName)
                                 .padding(.top, index % 2 != 0 ? 30 : 0)
+                        } else {
+                            Color.clear
                         }
+                        
                     }
                 }
                 .padding(.horizontal)
-                .padding(.bottom, 80) 
-
+                .padding(.bottom, 80)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 

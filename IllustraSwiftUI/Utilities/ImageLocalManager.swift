@@ -21,7 +21,6 @@ class ImageLocalManager {
         if !FileManager.default.fileExists(atPath: url.path) {
             do {
                 try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-                print("Created folder!")
             } catch let error {
                 print("Creating directory error! \(error)")
             }
@@ -36,17 +35,18 @@ class ImageLocalManager {
             .appendingPathComponent(folderName)
     }
     
-    private func getImagePath(imagePath: String) -> URL? {
-        guard let folderPath = getFolderPath() else { return nil }
-        return folderPath.appendingPathComponent(imagePath + ".png")
+    private func getImagePath(imageName: String) -> URL? {
+        guard let folderPath = getFolderPath() else {
+            return nil
+        }
+        return folderPath.appendingPathComponent(imageName + ".png")
     }
     
-    func addImage(imagePath: String, image: UIImage) {
+    func addImage(imageName: String, image: UIImage) {
         guard
             let data = image.pngData(),
-            let url = getImagePath(imagePath: imagePath)
+            let url = getImagePath(imageName: imageName)
         else { return print("Error converting data")}
-        
         do {
             try data.write(to: url)
         } catch let error {
@@ -54,13 +54,13 @@ class ImageLocalManager {
         }
     }
     
-    func getImage(imagePath: String) -> UIImage? {
+    func getImage(imageName: String) -> UIImage? {
         guard
-            let url = getImagePath(imagePath: imagePath),
-            FileManager.default.fileExists(atPath: url.path)
+            let imageName = getImagePath(imageName: imageName),
+            FileManager.default.fileExists(atPath: imageName.path)
         else { return nil}
         
-        return UIImage(contentsOfFile: url.path)
+        return UIImage(contentsOfFile: imageName.path)
     }
     
 }
