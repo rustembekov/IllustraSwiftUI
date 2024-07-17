@@ -15,6 +15,7 @@ struct HomeBrowseView: View {
         Binding(
             get: { self.showImageOverlay },
             set: { newValue in
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self.showImageOverlay = newValue
                 }

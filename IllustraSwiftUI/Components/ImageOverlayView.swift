@@ -12,39 +12,62 @@ struct ImageOverlayView: View {
     @Binding var showOverlay: Bool
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            Color.black.edgesIgnoringSafeArea(.all)
-            Image(uiImage: image)
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.black)
-                .edgesIgnoringSafeArea(.all)
-                .onTapGesture {
-                    showOverlay = false
-                }
+        
+        ZStack {
+            sectionImage
+                .scaledToFill()
+                .blur(radius: 40)
+                .ignoresSafeArea()
             
-            HStack {
+            VStack {
+                sectionProfile
+                
                 Spacer()
-                VStack {
-                    Button(action: {
-                        showOverlay = false
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 24))
-                            .foregroundColor(.white)
-                    }
-                    .padding()
-                    Spacer()
-                }
+                
+                sectionImage
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.7)
+                
+                Spacer()
             }
         }
     }
 }
 
+struct ImageOverlayView_Previews: PreviewProvider {
+    static var previews: some View {
+        ImageOverlayView(image: UIImage(named: "testing")!, showOverlay: .constant(true))
+    }
+}
 
-//struct ImageOverlayView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ImageOverlayView(image: UIImage(systemName: "") ?? "", showOverlay: false)
-//    }
-//}
+extension ImageOverlayView {
+    private var sectionProfile: some View {
+        HStack {
+            HStack {
+                Image("profile")
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                
+                VStack(alignment: .leading) {
+                    Text("ImranSid")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Text("@imransiddique")
+                        .font(.subheadline)
+                        .foregroundColor(.white)
+                }
+            }
+            Spacer()
+            XMarkButtonView(showOverlay: $showOverlay)
+        }
+        .padding(.horizontal)
+        .frame(maxWidth: UIScreen.main.bounds.width - 40)
+        
+    }
+    
+    private var sectionImage: some View {
+        Image(uiImage: image)
+            .resizable()
+            .scaledToFill()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
