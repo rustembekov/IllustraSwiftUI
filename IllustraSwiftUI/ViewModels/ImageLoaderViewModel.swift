@@ -43,6 +43,7 @@ class ImageLoaderViewModel: ObservableObject {
                     let self = self,
                     let image = returnedImage else { return }
                 self.manager.addImage(imageName: imageName, image: image)
+                self.image = image
             })
             .store(in: &cancellables)
     }
