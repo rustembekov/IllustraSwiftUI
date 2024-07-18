@@ -45,6 +45,7 @@ extension HomeCarouselView {
             .frame(width: 343, height: 343)
             .clipped()
             .padding(.horizontal)
+            
     }
     
     private var profileSection: some View {

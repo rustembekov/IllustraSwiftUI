@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject private var vm = HomeViewModel()
     
     var body: some View {
         NavigationView {
