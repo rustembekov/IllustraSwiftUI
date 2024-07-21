@@ -9,7 +9,25 @@ import SwiftUI
 
 struct ChatView: View {
     var body: some View {
-        Text("ChatView!")
+        NavigationView {
+            List {
+                ForEach(0..<4) { index in
+                    NavigationLink(destination: ChatBoxView()) {
+                        ChatRowView()
+                    }
+                }
+            }
+            .listStyle(PlainListStyle())
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Chats")
+                        .font(.title2)
+                        .fontWeight(.medium)
+                        .foregroundColor(.primary)
+                }
+            }
+        }
     }
 }
 

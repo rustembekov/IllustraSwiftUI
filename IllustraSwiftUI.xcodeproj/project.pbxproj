@@ -31,6 +31,8 @@
 		FAE7ADA62C48496B00E3004B /* ImageOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7ADA52C48496B00E3004B /* ImageOverlayViewModel.swift */; };
 		FAE7ADA82C48DAB800E3004B /* SearchBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7ADA72C48DAB800E3004B /* SearchBarViewModel.swift */; };
 		FAE7ADAC2C49329D00E3004B /* SearchTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7ADAB2C49329D00E3004B /* SearchTextFieldView.swift */; };
+		FAE7ADAE2C496BE000E3004B /* ChatRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7ADAD2C496BE000E3004B /* ChatRowView.swift */; };
+		FAE7ADB02C49871C00E3004B /* ChatBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7ADAF2C49871C00E3004B /* ChatBoxView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		FAE7ADA52C48496B00E3004B /* ImageOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOverlayViewModel.swift; sourceTree = "<group>"; };
 		FAE7ADA72C48DAB800E3004B /* SearchBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewModel.swift; sourceTree = "<group>"; };
 		FAE7ADAB2C49329D00E3004B /* SearchTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextFieldView.swift; sourceTree = "<group>"; };
+		FAE7ADAD2C496BE000E3004B /* ChatRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRowView.swift; sourceTree = "<group>"; };
+		FAE7ADAF2C49871C00E3004B /* ChatBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBoxView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +254,8 @@
 			isa = PBXGroup;
 			children = (
 				FACE70852C42F6B800C74E04 /* ChatView.swift */,
+				FAE7ADAD2C496BE000E3004B /* ChatRowView.swift */,
+				FAE7ADAF2C49871C00E3004B /* ChatBoxView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -367,11 +373,13 @@
 			files = (
 				FACE70942C43EFF000C74E04 /* HomeBrowseView.swift in Sources */,
 				FACE708B2C42F72100C74E04 /* ProfileView.swift in Sources */,
+				FAE7ADAE2C496BE000E3004B /* ChatRowView.swift in Sources */,
 				FACE708E2C43A56D00C74E04 /* TabBarViewModel.swift in Sources */,
 				FACE707C2C42F50C00C74E04 /* SearchBarView.swift in Sources */,
 				FAE7ADAC2C49329D00E3004B /* SearchTextFieldView.swift in Sources */,
 				FA2B78AD2C4528610010F870 /* ImageLocalManager.swift in Sources */,
 				FA871B8E2C42472E0057F4F0 /* HomeView.swift in Sources */,
+				FAE7ADB02C49871C00E3004B /* ChatBoxView.swift in Sources */,
 				FA2B78B12C47D0E70010F870 /* XMarkButtonView.swift in Sources */,
 				FA2B78A52C442E570010F870 /* ImageModelDataService.swift in Sources */,
 				FACE70812C42F65C00C74E04 /* AddContentView.swift in Sources */,

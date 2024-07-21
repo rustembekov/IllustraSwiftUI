@@ -27,24 +27,32 @@ class ImageLoaderViewModel: ObservableObject {
         }
     }
     
-    func loadImage(urlString: String, imageName: String) {
+    func loadImage(urlString: String, imageName: String) async{
         print("Downloading image now!")
         
         guard let url = URL(string: urlString) else { return }
+//
+//        URLSession.shared.dataTaskPublisher(for: url)
+//            .map { UIImage(data: $0.data) }
+//            .replaceError(with: nil)
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveCompletion: { completion in
+//                print("Completion: \(completion)")
+//            }, receiveValue: { [weak self] (returnedImage) in
+//                guard
+//                    let self = self,
+//                    let image = returnedImage else { return }
+//                self.manager.addImage(imageName: imageName, image: image)
+//                self.image = image
+//            })
+//            .store(in: &cancellables)
+//
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url, delegate: nil)
+            self.image = UIImage(data: data)
+        } catch let error {
+            print("Error downoading data!!! \(error.localizedDescription)")
+        }
         
-        URLSession.shared.dataTaskPublisher(for: url)
-            .map { UIImage(data: $0.data) }
-            .replaceError(with: nil)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                print("Completion: \(completion)")
-            }, receiveValue: { [weak self] (returnedImage) in
-                guard
-                    let self = self,
-                    let image = returnedImage else { return }
-                self.manager.addImage(imageName: imageName, image: image)
-                self.image = image
-            })
-            .store(in: &cancellables)
     }
 }
